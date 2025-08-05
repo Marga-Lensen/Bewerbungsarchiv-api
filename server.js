@@ -67,19 +67,7 @@ app.post("/upload", upload.single("file"), (req, res) => {
 });
 // -----------------------------------------------------------------
 // ##### new routes for searchable metadata in MongoDB #############
-// ✅ POST /submit — save metadata to MongoDB
-/* app.post("/submit", async (req, res) => {
-  try {
-    const newSubmission = new Submission(req.body);
-    const savedSubmission = await newSubmission.save();
-    res.status(201).json(savedSubmission);
-  } catch (err) {
-    console.error("❌ Error in /submit:", err);
-    res.status(500).json({ error: "Fehler beim Speichern des Eintrags" });
-  }
-}); */
-// Add Multer middleware here too (for handling optional cover letter file)
-// app.post("/submit", upload.single("coverFile"), async (req, res) => {  // that was only for cover letter file
+
 app.post("/submit", upload.fields([
   {name: "cvFile", maxCount: 1}, // Optional CV file
   {name: "coverFile", maxCount: 1}, // Optional cover letter file
